@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:FirstProjectWPF.Infrastructure.Commands"
         xmlns:vm="clr-namespace:FirstProjectWPF.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         Title="{Binding Title}"
         Height="450" Width="800">
     <Window.InputBindings>
@@ -43,7 +44,13 @@
         </StatusBar>
 
         <TabControl>
-            <TabItem Header="Вкладка 1">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Regular_File" Height="10" Margin="0,0,5,0" Foreground="Red"/>
+                        <TextBlock Text="Вкладка 1"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15*"/>
