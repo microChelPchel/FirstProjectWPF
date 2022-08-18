@@ -1,7 +1,10 @@
-﻿using FirstProjectWPF.ViewModels.Base;
+﻿using FirstProjectWPF.Infrastructure;
+using FirstProjectWPF.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
+using System.Windows.Input;
 
 namespace FirstProjectWPF.ViewModels
 {
@@ -33,6 +36,24 @@ namespace FirstProjectWPF.ViewModels
         }
         #endregion
 
+        #region Commands
+        #region Close Command
+        public ICommand CloseApplicationCommand { get;  }
+
+        private bool CanCloseApplicationCommandExecute(object parametr) => true;
+
+        private void OnCloseApplicationCommandExecuted(object parametr) 
+        {
+            Application.Current.Shutdown();
+        }
+        #endregion
+
+        #endregion
+
+        public MainWindowViewModel()
+        {
+            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted,CanCloseApplicationCommandExecute);
+        }
 
 
     }
