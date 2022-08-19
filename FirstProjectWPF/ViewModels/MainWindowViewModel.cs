@@ -1,5 +1,8 @@
 ﻿using FirstProjectWPF.Infrastructure;
+using FirstProjectWPF.Models;
 using FirstProjectWPF.ViewModels.Base;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,6 +10,18 @@ namespace FirstProjectWPF.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region TestDataPoints
+        private IEnumerable<DataPoint> _testDataPoints;
+
+        public IEnumerable<DataPoint> TestDataPoints
+        {
+            get => _testDataPoints;
+            set =>Set(ref _testDataPoints, value);
+        }
+
+        #endregion
+
+
         #region head title
         private string _Title= "Анализ статистики covid";
         /// <summary>Заголовок окна</summary>
@@ -50,8 +65,19 @@ namespace FirstProjectWPF.ViewModels
         public MainWindowViewModel()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted,CanCloseApplicationCommandExecute);
+
+            var data_points = new List<DataPoint>((int)(360 / 0.1));
+            for (var x = 0d; x <= 360; x += 0.1)
+            {
+                const double to_rad = Math.PI / 180;
+                var y = Math.Sin(x * to_rad);
+
+                data_points.Add(new DataPoint { XValue = x, YValue = y });
+            }
+            TestDataPoints = data_points;
         }
 
+        //4:01
 
     }
 }
