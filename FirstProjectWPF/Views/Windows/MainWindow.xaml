@@ -33,6 +33,22 @@
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе"/>
             </MenuItem>
+
+
+            <MenuItem Command="{Binding ChangeTabIngexCommand}" CommandParameter="-1">
+                <MenuItem.Header>
+                    <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleLeft"/>
+                </MenuItem.Header>
+            </MenuItem>
+
+
+            <MenuItem Command="{Binding ChangeTabIngexCommand}" CommandParameter="+1">
+                <MenuItem.Header>
+                    <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleRight"/>
+                </MenuItem.Header>
+            </MenuItem>
+
+            <MenuItem Header="{Binding SelectedPageIndex}" IsEnabled="False"/>
         </Menu>
 
         <StatusBar DockPanel.Dock="Bottom">
@@ -42,9 +58,11 @@
             <StatusBarItem>
                 <ProgressBar Width="120" Height="12" Value="30"/>
             </StatusBarItem>
+
+            <StatusBarItem Content="{Binding SelctedPageIndex}"/>
         </StatusBar>
 
-        <TabControl >
+        <TabControl SelectedIndex="{Binding SelectedPageIndex}">
          
             <TabItem Header="График">
                 <oxy:Plot>
@@ -58,7 +76,7 @@
                 </oxy:Plot>
             </TabItem>
 
-            <TabItem Visibility="Collapsed">
+            <TabItem >
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <fa:ImageAwesome Icon="Regular_File" Height="10" Margin="0,0,5,0" Foreground="Red"/>
@@ -83,6 +101,11 @@
                 </Grid>
 
             </TabItem>
+
+            <TabItem Header="Вкладка 2"></TabItem>
+            <TabItem Header="Вкладка 3"></TabItem>
+            <TabItem Header="Вкладка 4"></TabItem>
+        
         </TabControl>
     </DockPanel>
 
